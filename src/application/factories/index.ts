@@ -1,0 +1,1 @@
+export { tombolaController } from './tombola';
