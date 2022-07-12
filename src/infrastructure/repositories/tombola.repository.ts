@@ -1,12 +1,8 @@
-import { TombolaSchema } from '../orm/mongo/schema/tombolaConfig.schema';
 import { BaseRepository } from './base/base-repository';
+import {TombolaSchema} from '../orm/mongo/schema/tombolaConfig.schema'
 
-interface Tombola {
-  name: string;
-}
-
-export class TombolaRepository extends BaseRepository<Tombola> {
-  constructor() {
-    super('tombola');
+export class TombolaRepository extends BaseRepository<TombolaSchema> {
+  constructor(collectionName: string) {
+    super(collectionName);
   }
 }

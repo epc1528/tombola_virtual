@@ -22,8 +22,16 @@ export abstract class BaseRepository<T> implements IBaseRepository<T> {
     const updateDoc = {
       $set: item
     };
-    const document = await this.collection.findOneAndUpdate(filter, updateDoc);
-    return document.value as unknown as T;
+    const document = await this.collection.updateOne(filter, updateDoc);
+    return document as unknown as T;
+  }
+
+  async updateCredit(filter: any, item: T): Promise<T> {
+    const updateDoc = {
+      $inc: item
+    };
+    const document = await this.collection.updateOne(filter, updateDoc);
+    return document as unknown as T;
   }
 
   async delete(filter: any): Promise<boolean> {

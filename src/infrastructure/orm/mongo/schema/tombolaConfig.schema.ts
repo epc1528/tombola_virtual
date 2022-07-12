@@ -1,16 +1,10 @@
-import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
-
-@Entity('tombola')
-export class TombolaSchema {
-  @ObjectIdColumn()
-  id: ObjectID;
-
-  @Column()
+export interface TombolaSchema {
   name: string;
-
-  @Column()
   cost: number;
+  awards: IAwards[];
+}
 
-  @Column()
-  awards: Object[];
+interface IAwards {
+  award: string
+  percentage: number
 }

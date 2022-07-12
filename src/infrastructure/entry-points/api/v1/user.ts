@@ -1,11 +1,12 @@
-import { Request, Response, Router } from 'express';
-
+import { Router } from 'express';
+import { AdaptRoute } from '../../../../application/adapters/route-adapter';
+import { userController } from '../../../../application/factories/user';
 export const routerUser = Router();
 
-routerUser.get('/', (req: Request, res: Response) => {
-  res.send('Hello Word');
-});
+const user = new userController();
 
-routerUser.post('/miea', (req: Request, res: Response) => {
-  res.send('Hello Words');
-});
+routerUser.post('/login/', AdaptRoute(user.getUser()));
+
+routerUser.post('/',AdaptRoute(user.saveUser()));
+
+routerUser.put('/', AdaptRoute(user.updateUser()));
